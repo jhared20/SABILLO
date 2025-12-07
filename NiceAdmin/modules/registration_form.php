@@ -1,125 +1,97 @@
 <?php
-  include "../includes/connections.php";
+include "../includes/connections.php";
 
-  if(isset($_POST['btn_submit'])){
+if(isset($_POST['btn_submit'])){
 
-    $fullname = $_POST['registration_fullname'];
-    $email = $_POST['registration_email'];
-    $password = $_POST['registration_password'];
-    $address = $_POST['registration_address'];
-    $city = $_POST['registration_city'];
-    $barangay = $_POST['registration_barangay'];
-    $zip = $_POST['registration_zip'];
-    $terms = isset($_POST['registration_terms']) ? 1 : 0;
+    $customer = $_POST['sales_customer'];
+    $product = $_POST['sales_product'];
+    $quantity = (float)$_POST['sales_quantity'];
+    $price = (float)$_POST['sales_price'];
+    $payment = @$_POST['sales_payment'];
+    $member = @$_POST['sales_member'];
 
+    $total = $quantity * $price;
 
-    $sql = "INSERT INTO registration (fullname, email, password, address, city, barangay, zip, terms)
-            VALUES ('$fullname', '$email', '$password', '$address', '$city', '$barangay', '$zip', '$terms')";
+    $sql = "INSERT INTO sales (customer, product, quantity, price, total, payment_mode, member_type)
+            VALUES ('$customer', '$product', '$quantity', '$price', '$total', '$payment', '$member')";
     
     if ($conn->query($sql) === TRUE) {
-      echo '<script>alert("Submitted Successfully!");</script>';
+        echo '<script>alert("Sale Submitted Successfully!");</script>';
+        $_POST = array();
     } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
+}
 
-    }
-    if(isset($_POST['btn_reset'])){
-      echo '<script>alert("Reset Successfully!");</script>';
-    }
+if(isset($_POST['btn_reset'])){
+    echo '<script>alert("Form Reset Successfully!");</script>';
+}
 
-  $conn->close();
-
-
+$conn->close();
 ?>
 
-<h5 class="card-title">Registration Form</h5>
-<!-- Floating Labels Form -->
+<h5 class="card-title">Sales Form</h5>
 <form class="row g-3 needs-validation" method="POST" action="index.php?page=Registration_form">
-  <!-- Name -->
-  <div class="col-md-12"> 
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingName" placeholder="Full Name" name="registration_fullname">
-      <label for="floatingName">Full Name</label>
-      <div class="invalid-feedback">Please enter your name.</div>
+    <div class="col-md-12">
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingCustomer" placeholder="Customer Name" name="sales_customer">
+            <label for="floatingCustomer">Customer Name</label>
+            <div class="invalid-feedback">Please enter the customer name.</div>
+        </div>
     </div>
-  </div>
 
-  <!-- Email -->
-  <div class="col-md-6">
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingEmail" placeholder="Email" name="registration_email">
-      <label for="floatingEmail">Email Address</label>
-      <div class="invalid-feedback">Please enter a valid email address.</div>
+    <div class="col-md-6">
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingProduct" placeholder="Product Name" name="sales_product">
+            <label for="floatingProduct">Product Name</label>
+            <div class="invalid-feedback">Please enter the product name.</div>
+        </div>
     </div>
-  </div>
 
-  <!-- Password -->
-  <div class="col-md-6">
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="registration_password">
-      <label for="floatingPassword">Password</label>
-      <div class="invalid-feedback">Please enter a valid password (min 8 characters).</div>
+    <div class="col-md-3">
+        <div class="form-floating">
+            <input type="number" class="form-control" id="floatingQuantity" placeholder="Quantity" name="sales_quantity">
+            <label for="floatingQuantity">Quantity</label>
+            <div class="invalid-feedback">Please enter quantity.</div>
+        </div>
     </div>
-  </div>
 
-  <!-- Address -->
-  <div class="col-12">
-    <div class="form-floating">
-      <textarea class="form-control" placeholder="Address" name="registration_address"></textarea>
-      <label for="floatingTextarea">Address</label>
-      <div class="invalid-feedback">Please enter your address.</div>
+    <div class="col-md-3">
+        <div class="form-floating">
+            <input type="number" class="form-control" id="floatingPrice" placeholder="Price" name="sales_price">
+            <label for="floatingPrice">Price</label>
+            <div class="invalid-feedback">Please enter price.</div>
+        </div>
     </div>
-  </div>
 
-  <!-- City -->
-  <div class="col-md-6">
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingCity" placeholder="City" name="registration_city">
-      <label for="floatingCity">Province</label>
-      <div class="invalid-feedback">Please enter your Province.</div>
+    <div class="col-md-6">
+        <div class="form-floating">
+            <select class="form-select" id="floatingPayment" name="sales_payment">
+                <option selected disabled>Choose Payment Mode</option>
+                <option value="GCash">GCash</option>
+                <option value="Cash">Cash</option>
+                <option value="Debit Card">Debit Card</option>
+            </select>
+            <label for="floatingPayment">Mode of Payment</label>
+            <div class="invalid-feedback">Please select a payment mode.</div>
+        </div>
     </div>
-  </div>
 
-  <!-- State -->
-  <div class="col-md-4">
-    <div class="form-floating mb-3">
-      <select class="form-select" id="floatingSelect" aria-label="State" name="registration_barangay">
-        <option selected disabled>Choose your barangay</option>
-        <option value="1">Carmen</option>
-        <option value="2">Patag</option>
-        <option value="3">Bulua</option>
-      </select>
-      <label for="floatingSelect">State</label>
-      <div class="invalid-feedback">Please select your state.</div>
+    <div class="col-md-6">
+        <div class="form-floating">
+            <select class="form-select" id="floatingMember" name="sales_member">
+                <option selected disabled>Choose Member Type</option>
+                <option value="Gold">Gold</option>
+                <option value="Silver">Silver</option>
+                <option value="Bronze">Bronze</option>
+            </select>
+            <label for="floatingMember">Member Type</label>
+            <div class="invalid-feedback">Please select a member type.</div>
+        </div>
     </div>
-  </div>
 
-  <!-- Zip -->
-  <div class="col-md-2">
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingZip" placeholder="Zip" name="registration_zip">
-      <label for="floatingZip">Zip</label>
-      <div class="invalid-feedback">Please enter a valid zip code (4 digits).</div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary" name="btn_submit">Submit</button>
+        <button type="submit" class="btn btn-secondary" name="btn_reset">Reset</button>
     </div>
-  </div>
-
-  <!-- Terms and Conditions -->
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="termsCheck" name="registration_terms" required>
-      <label class="form-check-label" for="termsCheck">
-        I agree to the <a href="#" data-bs-toggle="tooltip" title="Read the terms and conditions">terms and conditions</a>.
-      </label>
-      <div class="invalid-feedback">You must agree to the terms and conditions to proceed.</div>
-    </div>
-  </div>
-
-  <!-- Submit Button -->
-  <div class="text-center">
-    <button type="submit" class="btn btn-primary" name="btn_submit">Submit</button>
-    <button type="submit" class="btn btn-secondary" name="btn_reset">Reset</button>
-  </div>
 </form>
-<!-- End floating Labels Form -->
-</div>
-

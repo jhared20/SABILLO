@@ -280,7 +280,7 @@
         <ul id="tables-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
           <li>
             <a href="index.php?page=Registration_form">
-              <i class="bi bi-circle"></i><span>Registration Form</span>
+              <i class="bi bi-circle"></i><span>Sales Form</span>
             </a>
           </li>
         </ul>

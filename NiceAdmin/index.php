@@ -35,7 +35,7 @@
             <div class="d-flex align-items-center">
                 <a href="index.php" class="logo d-flex align-items-center">
                     <img src="assets/img/logo.png" alt="">
-                    <span class="d-none d-lg-block">NiceAdmin</span>
+                    <span class="d-none d-lg-block">𝟑Ꝋ𝟑 Store</span>
                 </a>
                 <i class="bi bi-list toggle-sidebar-btn"></i>
             </div><!-- End Logo -->
@@ -221,7 +221,7 @@
                                     include 'modules/tokyo.php';
                                     break;
                                 default:
-                                    echo "<h5 class='card-title'>Welcome to 𝟑Ꝋ𝟑 Store</h5>";
+                                    echo "<h5 class='card-title'>Welcome to 𝟑Ꝋ𝟑's Store</h5>";
                                     echo "<h2>Buy Now!!</h2>";
                             }
                             ?>

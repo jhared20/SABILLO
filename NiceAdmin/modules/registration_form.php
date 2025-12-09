@@ -27,7 +27,7 @@ if(isset($_POST['btn_reset'])){
 
 ?>
 
-<h5 class="card-title">Order Now!</h5>
+<h5 class="card-title">Buy Now!</h5>
 <form class="row g-3 needs-validation" method="POST" action="index.php?page=Sales">
     <div class="col-md-12">
         <div class="form-floating">

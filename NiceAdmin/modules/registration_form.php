@@ -21,13 +21,14 @@ if(isset($_POST['btn_submit'])){
 }
 
 if(isset($_POST['btn_reset'])){
-    echo '<script>alert("Reset Successfully!");</script>';
+    echo '<script>alert("Reset Successfully!"); window.location.href = "index.php?page=Sales";</script>';
+    exit;
 }
 
 ?>
 
 <h5 class="card-title">Order Now!</h5>
-<form class="row g-3 needs-validation" method="POST" action="NiceAdmin/index.php?page=Sales">
+<form class="row g-3 needs-validation" method="POST" action="index.php?page=Sales">
     <div class="col-md-12">
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingCustomer" placeholder="Customer Name" name="sales_customer">
@@ -87,7 +88,7 @@ if(isset($_POST['btn_reset'])){
     </div>
 
     <div class="text-center">
-        <button type="btn_submit" class="btn btn-primary" name="btn_submit">Submit</button>
-        <button type="btn_submit" class="btn btn-secondary" name="btn_reset">Reset</button>
+        <button type="submit" class="btn btn-primary" name="btn_submit">Submit</button>
+        <button type="submit" class="btn btn-secondary" name="btn_reset">Reset</button>
     </div>
 </form>

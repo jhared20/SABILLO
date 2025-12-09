@@ -4,4 +4,4 @@
     <p>Tokyo, Japan busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples. The opulent Meiji Shinto Shrine is known for its towering gate and surrounding woods.</p>
     <p>The Imperial Palace sits amid large public gardens. The city's many museums offer exhibits ranging from classical art (in the Tokyo National Museum) to a reconstructed kabuki theater (in the Edo-Tokyo Museum).</p>
 
-    <img src="assets/img/tokyo.jpg" alt="Profile" width="1160" height="500">
+    <img src="assets/img/tokyo.jpg" alt="Profile" width="1500" height="500">

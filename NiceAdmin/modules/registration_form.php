@@ -7,31 +7,27 @@ if(isset($_POST['btn_submit'])){
     $product = $_POST['sales_product'];
     $quantity = (float)$_POST['sales_quantity'];
     $price = (float)$_POST['sales_price'];
-    $payment = @$_POST['sales_payment'];
-    $member = @$_POST['sales_member'];
+    $payment = $_POST['sales_payment'];
+    $member = $_POST['sales_member'];
 
     $total = $quantity * $price;
 
-    $sql = "INSERT INTO sales (customer, product, quantity, price, total, payment_mode, member_type)
-            VALUES ('$customer', '$product', '$quantity', '$price', '$total', '$payment', '$member')";
+    $sql = "INSERT INTO sales (customer, product, quantity, price, total, payment_mode, member_type) 
+        VALUES ('$customer', '$product', '$quantity', '$price', '$total', '$payment', '$member')";
     
-    if ($conn->query($sql) === TRUE) {
-        echo '<script>alert("Sale Submitted Successfully!");</script>';
-        $_POST = array();
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    $conn->query($sql);
+    
+    echo '<script>alert("Submitted Successfully!");</script>';
 }
 
 if(isset($_POST['btn_reset'])){
-    echo '<script>alert("Form Reset Successfully!");</script>';
+    echo '<script>alert("Reset Successfully!");</script>';
 }
 
-$conn->close();
 ?>
 
-<h5 class="card-title">Sales Form</h5>
-<form class="row g-3 needs-validation" method="POST" action="index.php?page=Registration_form">
+<h5 class="card-title">Order Now!</h5>
+<form class="row g-3 needs-validation" method="POST" action="NiceAdmin/index.php?page=Sales">
     <div class="col-md-12">
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingCustomer" placeholder="Customer Name" name="sales_customer">
@@ -67,7 +63,7 @@ $conn->close();
     <div class="col-md-6">
         <div class="form-floating">
             <select class="form-select" id="floatingPayment" name="sales_payment">
-                <option selected disabled>Choose Payment Mode</option>
+              <option value="">Choose Payment Mode</option>
                 <option value="GCash">GCash</option>
                 <option value="Cash">Cash</option>
                 <option value="Debit Card">Debit Card</option>
@@ -80,7 +76,7 @@ $conn->close();
     <div class="col-md-6">
         <div class="form-floating">
             <select class="form-select" id="floatingMember" name="sales_member">
-                <option selected disabled>Choose Member Type</option>
+                <option value="">Choose Member Type</option>
                 <option value="Gold">Gold</option>
                 <option value="Silver">Silver</option>
                 <option value="Bronze">Bronze</option>
@@ -91,7 +87,7 @@ $conn->close();
     </div>
 
     <div class="text-center">
-        <button type="submit" class="btn btn-primary" name="btn_submit">Submit</button>
-        <button type="submit" class="btn btn-secondary" name="btn_reset">Reset</button>
+        <button type="btn_submit" class="btn btn-primary" name="btn_submit">Submit</button>
+        <button type="btn_submit" class="btn btn-secondary" name="btn_reset">Reset</button>
     </div>
 </form>

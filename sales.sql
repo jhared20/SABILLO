@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2025 at 04:53 PM
+-- Generation Time: Dec 10, 2025 at 02:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -80,7 +80,10 @@ INSERT INTO `sales` (`id`, `customer`, `product`, `quantity`, `price`, `total`, 
 (34, 'Shaq', 'Royal', 5, 90, 450, 'Debit Card', 'Gold', '2025-12-09 14:45:16'),
 (35, 'Earl', 'Sprite', 4, 90, 360, 'Cash', 'Bronze', '2025-12-09 14:46:05'),
 (36, 'Con', 'Nips', 2, 10, 20, 'Cash', 'Silver', '2025-12-09 15:11:58'),
-(37, 'Xean', 'Cream', 3, 23, 69, 'Gcash', 'Silver', '2025-12-09 15:14:16');
+(37, 'Xean', 'Cream', 3, 23, 69, 'Gcash', 'Silver', '2025-12-09 15:14:16'),
+(38, 'Jl', 'Max', 3, 4, 12, 'Cash', 'Silver', '2025-12-10 01:14:23'),
+(39, 'Kae', 'Mountain Dew', 2, 90, 180, 'Cash', 'Silver', '2025-12-10 01:14:25'),
+(40, 'Jun', 'Toasted Sandwiches', 3, 75, 225, 'Gcash', 'Bronze', '2025-12-10 01:14:35');
 
 --
 -- Indexes for dumped tables
@@ -100,7 +103,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
